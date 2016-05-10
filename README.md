@@ -1,6 +1,8 @@
 # se-docker
 Dockerfile and scripts to create and run Solutions Enabler in a Docker container
 
+Creates a centos 7 base container running solutions enabler. The container uses a /usr/emc folder on the local system to maintain state between starts and stops. The container must run in privileged mode to obtain access to the /dev/sdX disk devices.
+
 # Initial Setup
 
 ## Step 1: Clone GitHub Repo
@@ -25,7 +27,7 @@ sudo docker build --rm -t se8200 ./se-docker
 ```
 
 ## Step 4: Run Start/Stop Command
-The emc_se script is a very simple /etc/init.d script to start and stop your solutions enabler conatiner. 
+The emc_se script is a very simple /etc/init.d script to start and stop your solutions enabler container. 
 
 ```bash
 sudo cp ./se-docker/emc_se /etc/init.d
@@ -35,7 +37,7 @@ sudo /etc/init.d/emc_se start
 This first start of SE will create the folder /usr/emc and populate it with the usual configuration, log, and database files.
 
 ## Step 5: Create Aliases
-Edit the aliases file to set the dessired location of the private key file (keypair.pem). Source the aliases file and verify connectivity. Note ssh access to the container is only possible via 127.0.0.1, this can be changed by modifying the emc_se script.
+Edit the aliases file to set the desired location of the private key file (keypair.pem). Source the aliases file and verify connectivity. Note ssh access to the container is only possible via 127.0.0.1, this can be changed by modifying the emc_se script.
 
 ```bash
 . ./se-docker/aliases
@@ -44,3 +46,12 @@ symcfg list
 
 And that's it. 
 
+# To Do's
+
+## User definable lockbox password
+## Import license file
+## Enable additional daemons
+Currently only the storapid, storgnsd, storevntd and storwatchd daemons are running.
+## Enable remote SYMCLI server and client
+## Docker volumes/Flocker support
+Truly HA Solutions Enabler
