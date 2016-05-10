@@ -16,7 +16,7 @@ RUN cd /usr && tar zcf ./emc.tar.gz ./emc/ && rm -rf ./emc
 VOLUME /usr/emc
 
 ADD run-se8200.sh /opt/run-se8200.sh
-ADD supervisor.conf /etc/supervisor.conf
+ADD supervisord.conf /etc/supervisord.conf
 ADD sshd.conf /etc/supervisor.d/
 ADD se8200.conf /etc/supervisor.d/
 
@@ -25,4 +25,4 @@ ENV PATH $PATH:/opt/emc/SYMCLI/bin
 
 EXPOSE 22 5986 5989 5994
 
-CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor.conf"]
+CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisord.conf"]
