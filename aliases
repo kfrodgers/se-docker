@@ -1,0 +1,28 @@
+#! /bin/bash
+#
+# Create aliases for all the symcli commands
+#
+
+#
+# List of commands to alias
+#
+COMMANDS="stordaemon storssl symaccess symacl symapierr \
+	symaudit symauth symbcv symcfg symcg \
+	symchg symchksum symcli symclone symconfigure \
+	symconnect symdev symdg symdisk symdrv \
+	symevent symfast symhost symhostfs syminq \
+	symioctl symipsec symlabel symlmf symlv \
+	symmask symmaskdb symmigrate symmir symoptmz \
+	sympart sympd symqos symrcopy symrdb \
+	symrdf symrecover SymRecover symreplicate symreturn \
+	symrslv symsan symsg symsnap symsnapvx \
+	symstar symstat symtier symtw symvg"
+
+#
+# Location of private key
+#
+PEM=~/src/se-docker/keypair.pem
+
+for cmd in $COMMANDS; do
+    alias $cmd="ssh -i $PEM -p 50022 root@localhost /opt/emc/SYMCLI/bin/$cmd"
+done

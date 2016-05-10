@@ -33,8 +33,16 @@ do_start () {
 		log_failure_msg "$IMAGE is already running"
 		return 1
 	fi
-	PID=`/usr/bin/docker run -d -p 50022:22 -p 5989:5989 --privileged -v /usr/emc/:/usr/emc se8200`
-	echo $PID > $PIDFILE
+	PID=`/usr/bin/docker run -d \
+		-p 127.0.0.1:50022:22 \
+		-p 5986:5986 \
+		-p 5989:5989 \
+		-p 5994:5994 \
+		--privileged \
+		--volume=/usr/emc/:/usr/emc se8200`
+	if [ -n "$PID" ]; then
+		echo $PID > $PIDFILE
+	fi
 	return 0
 }
 
