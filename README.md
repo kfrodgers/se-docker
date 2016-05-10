@@ -48,7 +48,11 @@ And that's it.
 
 ## To Do's
 User definable lockbox password
+
 Import license file
+
 Enable additional daemons. Currently only the storapid, storgnsd, storevntd and storwatchd daemons are running.
+
 Enable remote SYMCLI server and client
+
 Docker Volumes/Flocker support. For a simple HA Solutions Enabler
