@@ -33,7 +33,9 @@ do_start () {
 		log_failure_msg "$IMAGE is already running"
 		return 1
 	fi
+	HOSTNAME=`hostname`"-$IMAGE"
 	PID=`/usr/bin/docker run -d \
+		-h $HOSTNAME \
 		-p 127.0.0.1:50022:22 \
 		-p 5986:5986 \
 		-p 5989:5989 \
