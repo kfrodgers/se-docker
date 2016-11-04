@@ -7,10 +7,9 @@ then
 	rm -f /usr/emc/API/symapi/ipc/storgnsd
 	rm -f /usr/emc/API/symapi/ipc/storwatchd
 	rm -f /usr/emc/API/symapi/ipc/storevntd
-
-	/tmp/se8200/se8200_install.sh -increment -silent -cert -jni -srm -smis -symrec
 fi
 
+/tmp/se8200/se8200_install.sh -increment -silent -cert -jni -srm -smis -symrec
 /opt/emc/SYMCLI/bin/symcfg discover
 /opt/emc/SYMCLI/bin/symcfg list
 
